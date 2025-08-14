@@ -1,7 +1,9 @@
+import {test,expect} from '@playwright/test'
 export default class ApiUtils
 {
-    
-    constructor(apiContext,loginPayload){
+    apiContext: any
+    LoginPayload: string
+    constructor(apiContext:any,loginPayload:string){
         this.apiContext = apiContext;
         this.LoginPayload = loginPayload
     }
@@ -13,14 +15,13 @@ export default class ApiUtils
                 })
                expect(loginResponse.ok()).toBeTruthy();
                const loginResponseJson = await loginResponse.json();
-               token = loginResponseJson.token;
+               let token = loginResponseJson.token;
                console.log("token:"+ token)
                return token
-            
     }
 
-    async createOrder(OrderPayload){
-        let response={};
+    async createOrder(OrderPayload:string){
+        let response={token:String,OrderId:String};
         response.token = await this.getToken();
         const OrderResponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",
                 {data:OrderPayload,

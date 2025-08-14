@@ -1,5 +1,5 @@
-import LoginPage from '../Pages/LoginPage';
-import DashBoard from '../Pages/DashboardPage';
+import LoginPage from '../Pages_ts/LoginPage';
+import DashBoard from '../Pages_ts/DashboardPage';
 import {Page,Expect} from '@playwright/test'
 
 
@@ -15,7 +15,7 @@ import {Page,Expect} from '@playwright/test'
     this.page = page;
     this.expect = expect;
     this.loginPage = new LoginPage(this.page);
-    this.dashboardPage = new DashBoard(this.page);
+    this.dashboardPage = new DashBoard(this.page,this.expect);
 
     }
 
