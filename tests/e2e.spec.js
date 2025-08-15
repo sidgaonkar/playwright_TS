@@ -21,15 +21,14 @@ test('e2e Test',async({page})=>{
     //creating Object 
     const poManager =new POManager(page,expect);
     const loginPage = poManager.getLoginPage();
-    const dashboardPage = poManager.getDashboardPage()  
-
+    
     await loginPage.goto(url);
     await loginPage.login(username, password);
     await page.waitForLoadState('networkidle');
-    await dashboardPage.AddToCart(testData.productName);
+
+    const dashboardPage = poManager.getDashboardPage()  
+   await dashboardPage.AddToCart(testData.productName);
     await page.pause()
-
-
    await page.locator("(//input[@type='text'])[2]").pressSequentially("294",{delay:150})
    await page.locator(" (//input[@type='text'])[3]").pressSequentially("roshni gerg",{delay:50})
    await page.locator("[placeholder*='Country']").pressSequentially("ind",{delay:150})
