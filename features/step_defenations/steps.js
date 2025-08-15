@@ -4,10 +4,8 @@ import playwright from 'playwright'
 import POManager from '../../Pages/POManager.js';
 
 Given('a login page with {string} and {string} and url {string}', async function (username, password ,url) {
-           const browser = await playwright.chromium.launch({ headless: false });
-           const context = await browser.newContext();
-           const page = await context.newPage();
-           this.poManager =new POManager(page,expect);
+        
+           this.poManager =new POManager(this.page,this.expect);
            const loginPage = this.poManager.getLoginPage();
            await loginPage.goto(url);
            await loginPage.login(username, password);
